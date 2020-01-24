@@ -15,7 +15,7 @@ public abstract class Enemy
     public abstract void Attack();
 }
 
-public class Puncher : Enemy, IMissPunch, IThrowPunch
+public class Puncher : Enemy, IDie, IDamagePlayer
 {
     private int damageOut = 5;
 
@@ -24,18 +24,18 @@ public class Puncher : Enemy, IMissPunch, IThrowPunch
         Debug.Log("The puncher attacks.");
     }
 
-    public void throwPunch()
+    public void HurtPlayer()
     {
         Debug.Log("The puncher throws a punch for " + damageOut + " damage.");
     }
 
-    public void missPunch()
+    public void Die()
     {
-        Debug.Log("The puncher has missed a punch.");
+        Debug.Log("The puncher has died.");
     }
 }
 
-public class Kicker : Enemy, IMissKick, IThrowKick
+public class Kicker : Enemy, IDie, IDamagePlayer
 {
     private int damageOut = 12;
 
@@ -44,18 +44,18 @@ public class Kicker : Enemy, IMissKick, IThrowKick
         Debug.Log("The kicker attacks.");
     }
 
-    public void throwKick()
+    public void HurtPlayer()
     {
         Debug.Log("The kicker throws a kick for " + damageOut + " damage.");
     }
 
-    public void missKick()
+    public void Die()
     {
-        Debug.Log("The kicker has missed a kick.");
+        Debug.Log("The kicker has died.");
     }
 }
 
-public class Boss : Enemy, IThrowPunch, IThrowKick
+public class Boss : Enemy, IDie, IDamagePlayer
 {
     private int damageOut = Random.Range(1, 20);
 
@@ -64,13 +64,13 @@ public class Boss : Enemy, IThrowPunch, IThrowKick
         Debug.Log("The boss attacks.");
     }
 
-    public void throwKick()
+    public void HurtPlayer()
     {
-        Debug.Log("The boss throws a kick for " + damageOut + " damage.");
+        Debug.Log("The boss attacks the player for " + damageOut + " damage.");
     }
 
-    public void throwPunch()
+    public void Die()
     {
-        Debug.Log("The boss throws a punch for " + damageOut + " damage.");
+        Debug.Log("The boss has died.");
     }
 }

@@ -9,26 +9,14 @@ using UnityEngine;
 * Code for the interfaces for both the puncher and the kicker enemy.
 */
 
-public interface IMissPunch
+public interface IDie
 {
     // Puncher enemy misses a punch
-    void missPunch();
+    void Die();
 }
 
-public interface IThrowPunch
+public interface IDamagePlayer
 {
     // Puncher enemy throws a punch
-    void throwPunch();
-}
-
-public interface IMissKick
-{
-    // Kicker enemy misses a kick
-    void missKick();
-}
-
-public interface IThrowKick
-{
-    // Kicker enemy throws a kick
-    void throwKick();
+    void HurtPlayer();
 }

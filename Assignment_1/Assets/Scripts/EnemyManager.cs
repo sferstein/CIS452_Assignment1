@@ -17,8 +17,7 @@ public class EnemyManager : MonoBehaviour
     public Enemy bossEnemy;
 
     public List<Enemy> enemyList = new List<Enemy>();
-    public List<IThrowPunch> punchInterface = new List<IThrowPunch>();
-    public List<IThrowKick> kickInterface = new List<IThrowKick>();
+    public List<IDamagePlayer> damageList = new List<IDamagePlayer>();
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +38,9 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0; i < 1; i++)
         {
-            punchInterface.Add(new Puncher());
-            kickInterface.Add(new Kicker());
-            punchInterface.Add(new Boss());
-            kickInterface.Add(new Boss());
+            damageList.Add(new Puncher());
+            damageList.Add(new Kicker());
+            damageList.Add(new Boss());
         }
     }
 
@@ -59,13 +57,9 @@ public class EnemyManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            foreach (IThrowPunch punch in punchInterface)
+            foreach (IDamagePlayer damage in damageList)
             {
-                punch.throwPunch();
-            }
-            foreach (IThrowKick kick in kickInterface)
-            {
-                kick.throwKick();
+                damage.HurtPlayer();
             }
         }
     }
